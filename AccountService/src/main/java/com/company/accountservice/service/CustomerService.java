@@ -34,4 +34,11 @@ public class CustomerService {
         customer.setPhoneNumber(customerDto.getCustomerPhone());
         return customerRepository.save(customer).getId();
     }
+
+    @Transactional
+    public CustomerDto get(Long id) {
+        return customerRepository.findById(id)
+                .map(customerMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
+    }
 }

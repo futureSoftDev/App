@@ -49,7 +49,13 @@ public class AccountService {
 
     @Transactional
     public AccountDetailDto get(Long id) {
-        return accountRepository.findById(id).map(account -> new AccountDetailDto()).orElseThrow(() -> new RuntimeException("Account not found with id: " + id));
+        return accountRepository.findById(id)
+                .map(account -> {
+                    AccountDetailDto dto = accountMapper.toDetailDto(account);
+                    dto.setCustomer(customerService.get(account.getCustomerId()));
+                    return dto;
+                })
+                .orElseThrow(() -> new RuntimeException("Account not found with id: " + id));
     }
 
     public String getBuildVersion() {
