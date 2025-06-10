@@ -1,3 +1,5 @@
+version: "3.9"
+
 x-network-deploy-service: &network-common-config
   networks:
     - bank-app
@@ -34,6 +36,7 @@ services:
     container_name: config_server_container
     environment:
       SPRING_PROFILES_ACTIVE: git
+      SPRING_RABBITMQ_HOST: rabbitmq
     ports:
       - "8071:8071"
     healthcheck:
