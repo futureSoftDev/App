@@ -1,0 +1,40 @@
+server:
+  port: 8071
+spring:
+  application:
+    name: "ConfigServer"
+  profiles:
+#    active: native
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/futureSoftDev/AppConfig.git"
+          default-label: main # branch
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+#        native:
+#          search-locations: "file:///home/shukhratjon/Documents/config"
+
+  rabbitmq:
+    host: localhost
+    password: guest
+    username: guest
+    port: 5672
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
