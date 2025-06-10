@@ -32,6 +32,8 @@ services:
   configserver:
     image: shukhratjon1201/configserver
     container_name: config_server_container
+    environment:
+      SPRING_PROFILES_ACTIVE: git
     ports:
       - "8071:8071"
     healthcheck:

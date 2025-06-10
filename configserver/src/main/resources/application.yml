@@ -4,7 +4,6 @@ spring:
   application:
     name: "ConfigServer"
   profiles:
-#    active: native
     active: git
   cloud:
     config:
@@ -15,9 +14,6 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
-#        native:
-#          search-locations: "file:///home/shukhratjon/Documents/config"
-
   rabbitmq:
     host: localhost
     password: guest
