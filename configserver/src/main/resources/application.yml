@@ -15,10 +15,16 @@ spring:
           clone-on-start: true
           force-pull: true
   rabbitmq:
-    host: localhost
+    host: ${SPRING_RABBITMQ_HOST}
     password: guest
     username: guest
     port: 5672
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 5
+          initial-interval: 3000
 
 management:
   endpoints:

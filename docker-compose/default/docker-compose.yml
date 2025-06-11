@@ -9,6 +9,8 @@ x-microservice-base: &microservice-base-config
     resources:
       limits:
         memory: 700m
+  environment:
+    SPRING_RABBITMQ_HOST: rabbitmq
 x-microservice-configserver-config: &microservice-configserver-conf
   <<: *microservice-base-config
   depends_on:

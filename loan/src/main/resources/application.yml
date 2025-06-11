@@ -21,11 +21,10 @@ spring:
     import: "configserver:http://localhost:8071" # we can add optional property
 
   rabbitmq:
-    host: localhost
+    host: ${SPRING_RABBIT_MQ_HOST}
     password: guest
     username: guest
     port: 5672
-
 
 management:
   endpoints:

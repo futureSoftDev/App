@@ -20,7 +20,7 @@ spring:
     name: card
 
   rabbitmq:
-    host: localhost
+    host: ${SPRING_RABBIT_MQ_HOST}
     password: guest
     username: guest
     port: 5672
