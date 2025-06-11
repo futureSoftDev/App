@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cards
+  template:
+    metadata:
+      labels:
+        app: cards
+    spec:
+      containers:
+      - name: cards
+        image: shukhratjon1201/card
+        ports:
+        - containerPort: 9090
+        env:
+        - name: SPRING_APPLICATION_NAME
+          value: cards
+        - name: SPRING_PROFILES_ACTIVE
+          value: default
+        - name: SPRING_CONFIG_IMPORT
+          value: "configserver:http://configserver:8071"
+        - name: SPRING_RABBITMQ_HOST
+          value: rabbitmq
+        resources:
+          limits:
+            memory: "700Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cards
+spec:
+  type: NodePort
+  selector:
+    app: cards
+  ports:
+  - port: 9090
+    targetPort: 9090
+    nodePort: 30090

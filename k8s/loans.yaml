@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loans
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loans
+  template:
+    metadata:
+      labels:
+        app: loans
+    spec:
+      containers:
+      - name: loans
+        image: shukhratjon1201/loan
+        ports:
+        - containerPort: 8090
+        env:
+        - name: SPRING_APPLICATION_NAME
+          value: loans
+        - name: SPRING_PROFILES_ACTIVE
+          value: default
+        - name: SPRING_CONFIG_IMPORT
+          value: "configserver:http://configserver:8071"
+        - name: SPRING_RABBITMQ_HOST
+          value: rabbitmq
+        resources:
+          limits:
+            memory: "700Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loans
+spec:
+  type: NodePort
+  selector:
+    app: loans
+  ports:
+  - port: 8090
+    targetPort: 8090
+    nodePort: 30091
