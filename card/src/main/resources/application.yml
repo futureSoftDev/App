@@ -18,7 +18,7 @@ spring:
     import: "configserver:http://localhost:8071"
 
   rabbitmq:
-    host: ${SPRING_RABBIT_MQ_HOST}
+    host: ${SPRING_RABBITMQ_HOST}
     password: guest
     username: guest
     port: 5672
