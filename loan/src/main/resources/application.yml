@@ -14,11 +14,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  application:
-    name: loan
   config:
-#    import: "configserver:http://localhost:8071"
-    import: "configserver:http://localhost:8071" # we can add optional property
+    import: "configserver:http://localhost:8071"
 
   rabbitmq:
     host: ${SPRING_RABBIT_MQ_HOST}

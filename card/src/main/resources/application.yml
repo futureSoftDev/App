@@ -16,8 +16,6 @@ spring:
     show-sql: true
   config:
     import: "configserver:http://localhost:8071"
-  application:
-    name: card
 
   rabbitmq:
     host: ${SPRING_RABBIT_MQ_HOST}
