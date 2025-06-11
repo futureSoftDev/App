@@ -18,7 +18,7 @@ spring:
       ddl-auto: update
     show-sql: true
   config:
-    import: "configserver:http://localhost:8071" # we can add optional property
+    import: "configserver:http://configserver:8071" # we can add optional property
 
   rabbitmq:
     host: ${SPRING_RABBIT_MQ_HOST}
